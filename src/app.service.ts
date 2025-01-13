@@ -1,8 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { AppRepository } from './app.repository';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  constructor(protected appRepository: AppRepository) {}
+
+  async getHello() {
+    const res = await this.appRepository.createPost();
+    return res;
   }
 }
